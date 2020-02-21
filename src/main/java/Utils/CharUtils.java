@@ -1,3 +1,5 @@
+package Utils;
+
 public class CharUtils {
 
     public static final char[] lowerCase = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o',
