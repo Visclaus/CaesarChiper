@@ -1,6 +1,8 @@
 import Api.CaesarDecrypter;
 import Api.CaesarEncipher;
+import Api.CaesarVigenereEncipherImpl;
 import Impl.CaesarEncipherImpl;
+import Impl.CaesarVigenereDecrypter;
 import Impl.FrequencyCaesarDecrypter;
 import Utils.ResourcesUtils;
 
@@ -25,13 +27,14 @@ public class Application {
                     resultBuilder.append(readBuf);
                 }
             }
+            char[] keyWord = new char[]{'l', 'o', 'l'};
             try (Writer writer = new BufferedWriter(new FileWriter(encryptedText));
                  Writer writer1 = new BufferedWriter(new FileWriter(decryptedText))) {
-                CaesarEncipher encipher = new CaesarEncipherImpl();
-                CaesarDecrypter decrypter = new FrequencyCaesarDecrypter();
-                String encrypted = encipher.encrypt(resultBuilder.toString(), 1);
+                CaesarVigenereEncipherImpl encipher = new CaesarVigenereEncipherImpl();
+                CaesarVigenereDecrypter decrypter = new CaesarVigenereDecrypter();
+                String encrypted = encipher.encrypt(resultBuilder.toString(), keyWord);
                 writer.write(encrypted);
-                writer1.write(decrypter.decrypt(encrypted));
+                writer1.write(decrypter.decrypt(encrypted, 3));
             }
         }
     }
